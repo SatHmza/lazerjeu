@@ -91,13 +91,22 @@ export default function RippleImage({
     const scene = new Transform();
     const geometry = new Plane(gl);
 
+    // Route through Next's own image optimizer so the texture request is
+    // same-origin — external CDNs (Lummi included) don't send CORS headers,
+    // and WebGL's texImage2D silently refuses cross-origin images without them.
     const image = new window.Image();
     image.crossOrigin = "anonymous";
-    image.src = src;
+    image.src = `/_next/image?url=${encodeURIComponent(src)}&w=1200&q=75`;
 
     const texture = new Texture(gl);
     image.onload = () => {
       texture.image = image;
+    };
+    image.onerror = () => {
+      // Fall back silently to the plain <img> underneath.
+      destroyed = true;
+      cancelAnimationFrame(raf);
+      gl.canvas.remove();
     };
 
     const program = new Program(gl, {

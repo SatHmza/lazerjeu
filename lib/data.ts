@@ -1,8 +1,10 @@
 // Content adapted from the current lazarjeux.com site copy.
-// Images are seeded picsum.photos placeholders — swap for real venue photography/video.
+// Images are real free-license stock photos from lummi.ai, picked per section
+// (laser tag arenas, karaoke, arcade/gaming, food, events) — not generic
+// placeholders. Swap for real venue photography/video whenever it's ready.
 
-export const img = (seed: string, w = 1200, h = 1500) =>
-  `https://picsum.photos/seed/${seed}/${w}/${h}`;
+export const lummi = (cid: string, w = 1200, h = 1500) =>
+  `https://assets.lummi.ai/assets/${cid}?auto=format&fit=crop&w=${w}&h=${h}`;
 
 export const SAMPLE_VIDEO =
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
@@ -12,7 +14,7 @@ export type Activity = {
   name: string;
   tagline: string;
   description: string;
-  seed: string;
+  cid: string;
   color: string;
 };
 
@@ -23,7 +25,7 @@ export const activities: Activity[] = [
     tagline: "Arène multi-niveaux, plongée dans le noir",
     description:
       "Notre arène immersive à plusieurs niveaux transforme chaque partie en mission commando. Gilets, brume, néons — l'équipe qui communique le mieux gagne.",
-    seed: "lazar-laser",
+    cid: "QmWBT8WwSmagTYUCxTAo5QwqV3BrfgxEffMSjJLt1w9yVJ",
     color: "laser-pink",
   },
   {
@@ -32,7 +34,7 @@ export const activities: Activity[] = [
     tagline: "Cibles connectées, scores en temps réel",
     description:
       "Des cibles électroniques qui comptent les points à votre place, pour se concentrer sur la précision et le trash-talk entre amis.",
-    seed: "lazar-darts",
+    cid: "QmNRy7NJFmj8GZfogceznpzzXh5wVHqQgCzHDwAWer5xfY",
     color: "laser-cyan",
   },
   {
@@ -41,7 +43,7 @@ export const activities: Activity[] = [
     tagline: "Votre salon, votre playlist, votre soirée",
     description:
       "Une cabine privée insonorisée, un catalogue multilingue et un système son taillé pour les refrains qu'on assume.",
-    seed: "lazar-karaoke",
+    cid: "QmTJ1Js9S3od1XXu7716iaR16zTXipXZPubvBQ6YcHDPPa",
     color: "laser-violet",
   },
   {
@@ -50,7 +52,7 @@ export const activities: Activity[] = [
     tagline: "Dernières manettes, derniers titres",
     description:
       "Des postes PS4 et PS5 pensés pour le multijoueur : sport, course, combat — de quoi occuper une bande d'amis un après-midi entier.",
-    seed: "lazar-ps5",
+    cid: "QmfW8rEo8waxvs1x8que4mCvrjFC95iwZfUyqqaZpHRYvF",
     color: "laser-lime",
   },
   {
@@ -59,7 +61,7 @@ export const activities: Activity[] = [
     tagline: "Une bibliothèque de classiques et de découvertes",
     description:
       "De quoi ralentir le rythme entre deux parties de laser game : stratégie, ambiance, coopératif — pour tous les âges.",
-    seed: "lazar-board",
+    cid: "QmXNo8rDKq6wPdDrK98xjSDZj4K11riVpMnNkPGdiuKhjM",
     color: "laser-orange",
   },
   {
@@ -68,7 +70,7 @@ export const activities: Activity[] = [
     tagline: "Réflexes, palets et petit talk-trash",
     description:
       "Deux tables prêtes pour les duels rapides. Simple à comprendre, difficile à dominer.",
-    seed: "lazar-hockey",
+    cid: "QmT7Lpm16UTJsSYVLHSGLUahbNhqVNkSLqLGEZtMNy8MK1",
     color: "laser-cyan",
   },
   {
@@ -77,7 +79,7 @@ export const activities: Activity[] = [
     tagline: "Le souvenir qu'on partage direct en story",
     description:
       "Une plateforme rotative et une caméra qui capture chaque angle en ralenti — le clou de tous nos évènements.",
-    seed: "lazar-360",
+    cid: "QmQodKvx9sDozw5myVHkv7vbrYX6fyCURaytjLhWb3ubRm",
     color: "laser-pink",
   },
   {
@@ -86,7 +88,7 @@ export const activities: Activity[] = [
     tagline: "Anniversaires, sorties scolaires, team building",
     description:
       "Des formules jusqu'à 200 personnes, activités combinées et espace bistro dédié — on s'occupe du reste.",
-    seed: "lazar-events",
+    cid: "QmRBvEuuSqPSEmzqqdAnRZ3BbD8nyPLNfet4E5Nfjircdj",
     color: "laser-violet",
   },
 ];
@@ -152,25 +154,21 @@ export const faqs = [
   },
 ];
 
-export const galleryImages = Array.from({ length: 13 }).map((_, i) => ({
-  seed: `lazar-gallery-${i + 1}`,
-  caption:
-    [
-      "Arène laser game",
-      "Terrasse front de mer",
-      "Soirée karaoké",
-      "Anniversaire enfants",
-      "Sortie scolaire",
-      "Team building entreprise",
-      "Bistro & brunch",
-      "Photobooth 360°",
-      "Air hockey",
-      "Fléchettes électroniques",
-      "PlayStation lounge",
-      "Coucher de soleil sur Harhoura",
-      "Jeux de société en terrasse",
-    ][i] ?? "Lazar Jeux Club",
-}));
+export const galleryImages = [
+  { cid: "QmTeweZ4yEUcWNRnoiwg1xcTumc8QUTCrXQUPgcGHFE5Cw", caption: "Arène laser game" },
+  { cid: "QmaZ3WYY6A5ThDt9fyxpNEQsb14PbpbZxUE5SdJfBFMaWD", caption: "Terrasse front de mer" },
+  { cid: "QmQFY7osobuJBwa3SjEXubD8bBqVCpEgsmqfx6jBs2L5Dv", caption: "Soirée karaoké" },
+  { cid: "QmQx6ZR5yq1SwcokPMNsbphG2br6kWDB5zsowMijSLfXn3", caption: "Anniversaire enfants" },
+  { cid: "QmPG2WjLMz414WHvUA3Wgpoauz9mgZ3KPVbGkN4WtXHcqT", caption: "Sortie scolaire" },
+  { cid: "QmQtafzoSsQNhSXd63hAtAez5ZzmYz6p98p538uqszSRtZ", caption: "Team building entreprise" },
+  { cid: "QmW5NeYukgScHK7JEwLPPWDeoZT9W98VSKEh9iv38z8BYW", caption: "Bistro & brunch" },
+  { cid: "Qmf5QMmtsA9Q4eTr5tXggPzP2mNTtZux4PA2wf6UXtf5Br", caption: "Photobooth 360°" },
+  { cid: "QmP2ha5ykWf2qX6jGFkxerpiMJojcRz7j7BWDfVgNbghdG", caption: "Air hockey" },
+  { cid: "QmQZDsWLaDTxoU77cJyvFSUPmb1qcwQdrdddwfHe15erFZ", caption: "Fléchettes électroniques" },
+  { cid: "QmdmfziseKLVZFRw52La9vu8Agvx7SxR4887eg6dDX2Wk3", caption: "PlayStation lounge" },
+  { cid: "QmYy1v68yRfAW1UwQYZSg4QQQ5s4v43bVmRCfd7M2LKkrv", caption: "Coucher de soleil sur Harhoura" },
+  { cid: "QmaKRxoqWFSrqGxTaTeDszmjGSbcjbeTmJVdcVdaaxJduU", caption: "Jeux de société en terrasse" },
+];
 
 export const contact = {
   phone1: "+212 537 626 651",
@@ -192,7 +190,7 @@ export const eventPackages = [
     name: "Anniversaires",
     audience: "Enfants & ados",
     capacity: "Jusqu'à 200 invités",
-    seed: "lazar-bday",
+    cid: "Qme7T8A6CCP1b9hT646MK9MzR9NKCC85axqYZ8HYUuh925",
     description:
       "Laser game, photobooth, gâteau et espace privatisé — une formule clé en main pensée pour ne rien gérer le jour J.",
   },
@@ -200,7 +198,7 @@ export const eventPackages = [
     name: "Sorties scolaires",
     audience: "Établissements & centres",
     capacity: "Jusqu'à 200 élèves",
-    seed: "lazar-school",
+    cid: "Qma4Jwq2iN7YBb8jmE8wEc7yVwpxjX4JezKra3G57uUy5M",
     description:
       "Encadrement dédié, activités rotatives et espace restauration groupe — une journée complète hors les murs.",
   },
@@ -208,7 +206,7 @@ export const eventPackages = [
     name: "Team building",
     audience: "Entreprises",
     capacity: "Jusqu'à 200 collaborateurs",
-    seed: "lazar-corp",
+    cid: "QmaRikvtx3L6TwjsK6bHPrDmVBwJnRyNj4uxfiYVgANis7",
     description:
       "Challenges laser game par équipes, débrief autour d'un buffet — pour souder une équipe autrement qu'en salle de réunion.",
   },

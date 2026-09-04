@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
-import { activities, img } from "@/lib/data";
+import { activities, lummi } from "@/lib/data";
 
 // A curated set of above-the-fold assets we actually preload, so the
 // percentage reflects real network/decode progress rather than a fake timer.
 const CRITICAL_ASSETS = [
-  img("lazar-hero", 1600, 2000),
-  ...activities.slice(0, 6).map((a) => img(a.seed, 900, 1100)),
+  lummi("QmUtaJj4v3UPX9NPo8x8iALMmb1HTEJoG6XJpmd96CVQau", 1600, 2000),
+  ...activities.slice(0, 6).map((a) => lummi(a.cid, 900, 1100)),
 ];
 
 export default function Preloader() {

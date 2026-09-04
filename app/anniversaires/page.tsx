@@ -4,7 +4,7 @@ import Image from "next/image";
 import SplitReveal from "@/components/SplitReveal";
 import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
-import { eventPackages, contact, img } from "@/lib/data";
+import { eventPackages, contact, lummi } from "@/lib/data";
 
 export default function AnniversairesPage() {
   return (
@@ -34,7 +34,7 @@ export default function AnniversairesPage() {
           <Reveal key={p.name} delay={i * 0.08} className="group relative flex min-h-[70vh] flex-col justify-end bg-ink p-8">
             <div className="absolute inset-0 -z-10">
               <Image
-                src={img(p.seed, 900, 1400)}
+                src={lummi(p.cid, 900, 1400)}
                 alt={p.name}
                 fill
                 sizes="(min-width: 768px) 33vw, 100vw"

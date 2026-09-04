@@ -6,7 +6,7 @@ import SplitReveal from "@/components/SplitReveal";
 import Reveal from "@/components/Reveal";
 import RippleImage from "@/components/RippleImage";
 import Marquee from "@/components/Marquee";
-import { galleryImages, img } from "@/lib/data";
+import { galleryImages, lummi } from "@/lib/data";
 
 export default function GaleriePage() {
   const [active, setActive] = useState<number | null>(null);
@@ -37,10 +37,10 @@ export default function GaleriePage() {
       <section className="bg-ink px-6 py-20 md:px-10">
         <div className="columns-2 gap-4 md:columns-3 lg:columns-4">
           {galleryImages.map((g, i) => (
-            <Reveal key={g.seed} delay={(i % 6) * 0.04} className="mb-4 break-inside-avoid">
+            <Reveal key={g.cid} delay={(i % 6) * 0.04} className="mb-4 break-inside-avoid">
               {i < 3 ? (
                 <button onClick={() => setActive(i)} className="block w-full" data-cursor="link">
-                  <RippleImage src={img(g.seed, 700, 900)} alt={g.caption} className="w-full rounded-xl" />
+                  <RippleImage src={lummi(g.cid, 700, 900)} alt={g.caption} className="w-full rounded-xl" />
                 </button>
               ) : (
                 <button
@@ -49,7 +49,7 @@ export default function GaleriePage() {
                   data-cursor="link"
                 >
                   <Image
-                    src={img(g.seed, 700, 900)}
+                    src={lummi(g.cid, 700, 900)}
                     alt={g.caption}
                     fill
                     sizes="(min-width: 1024px) 25vw, 50vw"
@@ -70,7 +70,7 @@ export default function GaleriePage() {
         >
           <div className="relative aspect-[4/5] w-full max-w-xl">
             <Image
-              src={img(galleryImages[active].seed, 1000, 1250)}
+              src={lummi(galleryImages[active].cid, 1000, 1250)}
               alt={galleryImages[active].caption}
               fill
               sizes="90vw"

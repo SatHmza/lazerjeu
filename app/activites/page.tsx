@@ -4,7 +4,7 @@ import Image from "next/image";
 import SplitReveal from "@/components/SplitReveal";
 import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
-import { activities, img } from "@/lib/data";
+import { activities, lummi } from "@/lib/data";
 
 export default function ActivitesPage() {
   return (
@@ -39,7 +39,7 @@ export default function ActivitesPage() {
           >
             <div className="relative h-[45vh] w-full md:h-auto md:w-1/2">
               <Image
-                src={img(a.seed, 1200, 1400)}
+                src={lummi(a.cid, 1200, 1400)}
                 alt={a.name}
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"

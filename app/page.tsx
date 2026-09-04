@@ -8,7 +8,7 @@ import SplitReveal from "@/components/SplitReveal";
 import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import RippleImage from "@/components/RippleImage";
-import { activities, stats, contact, img, galleryImages } from "@/lib/data";
+import { activities, stats, contact, lummi, galleryImages } from "@/lib/data";
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement | null>(null);
@@ -37,7 +37,7 @@ export default function HomePage() {
       <section ref={heroRef} className="relative flex h-[100svh] items-end overflow-hidden bg-ink">
         <div ref={heroImgRef} className="absolute inset-0 -top-[10%] h-[120%] w-full">
           <Image
-            src={img("lazar-hero", 1800, 2200)}
+            src={lummi("QmUtaJj4v3UPX9NPo8x8iALMmb1HTEJoG6XJpmd96CVQau", 1800, 2200)}
             alt="Arène laser game Lazar Jeux, Harhoura"
             fill
             priority
@@ -94,7 +94,7 @@ export default function HomePage() {
         <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-paper/10 sm:grid-cols-2 lg:grid-cols-4">
           {activities.map((a, i) => (
             <Reveal key={a.slug} delay={(i % 4) * 0.06} className="group relative aspect-[3/4] bg-ink">
-              <RippleImage src={img(a.seed, 700, 900)} alt={a.name} className="absolute inset-0 h-full w-full" />
+              <RippleImage src={lummi(a.cid, 700, 900)} alt={a.name} className="absolute inset-0 h-full w-full" />
               <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink via-ink/10 to-transparent p-5">
                 <span className="font-display text-xs uppercase tracking-widest2 text-laser-cyan">
                   0{i + 1}
@@ -150,12 +150,12 @@ export default function HomePage() {
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {galleryImages.slice(0, 8).map((g, i) => (
             <Reveal
-              key={g.seed}
+              key={g.cid}
               delay={(i % 4) * 0.05}
               className={`relative overflow-hidden rounded-xl ${i % 5 === 0 ? "aspect-[3/4] md:col-span-2 md:row-span-2" : "aspect-square"}`}
             >
               <Image
-                src={img(g.seed, 800, 800)}
+                src={lummi(g.cid, 800, 800)}
                 alt={g.caption}
                 fill
                 sizes="(min-width: 768px) 25vw, 50vw"
