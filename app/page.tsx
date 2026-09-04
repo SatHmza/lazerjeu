@@ -17,12 +17,22 @@ export default function HomePage() {
           design — this is the one moment that's pure neon/graphic. */}
       <section className="relative flex h-[100svh] items-end overflow-hidden bg-black">
         <TubesCursor />
+        {/* Static neon wash behind the cursor trail — screen-blended so it
+            adds light to the black canvas without dulling the tubes. */}
         <div
-          className="pointer-events-none absolute inset-0 z-[1]"
+          className="hero-glow pointer-events-none absolute inset-0 z-[1]"
           style={{
-            background:
-              "radial-gradient(60% 50% at 50% 100%, rgba(255,47,208,0.16), transparent 70%)",
+            mixBlendMode: "screen",
+            background: [
+              "radial-gradient(65% 55% at 18% 88%, rgba(255,47,208,0.42), transparent 62%)",
+              "radial-gradient(55% 45% at 84% 22%, rgba(57,242,230,0.32), transparent 62%)",
+              "radial-gradient(75% 60% at 52% 112%, rgba(123,59,255,0.40), transparent 68%)",
+            ].join(", "),
           }}
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-1/2"
+          style={{ background: "linear-gradient(to top, rgba(10,10,13,0.85), transparent)" }}
         />
 
         <div className="relative z-10 w-full px-6 pb-16 md:px-10 md:pb-24">
@@ -69,48 +79,30 @@ export default function HomePage() {
           </h2>
         </Reveal>
 
-        {/* Alternates real photos with pure neon/graphic cards — fewer
-            photos, more of the codepen's glow-on-black language. */}
+        {/* Every activity gets its own photo, with a neon wash + hover glow
+            so the grid still reads as part of the laser/neon language. */}
         <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-paper/10 sm:grid-cols-2 lg:grid-cols-4">
-          {activities.map((a, i) =>
-            i % 2 === 0 ? (
-              <Reveal key={a.slug} delay={(i % 4) * 0.06} className="group relative aspect-[3/4] bg-ink">
-                <RippleImage src={lummi(a.cid, 700, 900)} alt={a.name} className="absolute inset-0 h-full w-full" />
-                <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink via-ink/10 to-transparent p-5">
-                  <span className="font-display text-xs uppercase tracking-widest2 text-laser-cyan">
-                    0{i + 1}
-                  </span>
-                  <h3 className="font-display text-xl uppercase leading-tight text-paper">{a.name}</h3>
-                  <p className="mt-1 text-xs text-paper/60">{a.tagline}</p>
-                </div>
-              </Reveal>
-            ) : (
-              <Reveal
-                key={a.slug}
-                delay={(i % 4) * 0.06}
-                className="relative flex aspect-[3/4] flex-col justify-end overflow-hidden bg-black p-5"
-              >
-                <div
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      "radial-gradient(120% 90% at 15% 100%, rgba(57,242,230,0.18), transparent 60%)",
-                  }}
-                />
-                <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen" aria-hidden>
-                  <div className="absolute left-1/2 top-1/2 h-[140%] w-px -translate-x-1/2 -translate-y-1/2 rotate-[18deg] bg-gradient-to-b from-transparent via-laser-cyan to-transparent" />
-                  <div className="absolute left-1/2 top-1/2 h-[140%] w-px -translate-x-1/2 -translate-y-1/2 -rotate-[12deg] bg-gradient-to-b from-transparent via-laser-pink to-transparent" />
-                </div>
-                <span className="relative font-display text-5xl text-transparent text-outline">
+          {activities.map((a, i) => (
+            <Reveal key={a.slug} delay={(i % 4) * 0.06} className="group relative aspect-[3/4] bg-ink">
+              <RippleImage src={lummi(a.cid, 700, 900)} alt={a.name} className="absolute inset-0 h-full w-full" />
+              <div
+                className="pointer-events-none absolute inset-0 opacity-70 mix-blend-screen transition-opacity duration-500 group-hover:opacity-100"
+                style={{
+                  background:
+                    i % 2 === 0
+                      ? "radial-gradient(90% 70% at 20% 100%, rgba(255,47,208,0.30), transparent 65%)"
+                      : "radial-gradient(90% 70% at 80% 100%, rgba(57,242,230,0.28), transparent 65%)",
+                }}
+              />
+              <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink via-ink/20 to-transparent p-5">
+                <span className="font-display text-xs uppercase tracking-widest2 text-laser-cyan">
                   0{i + 1}
                 </span>
-                <h3 className="relative mt-2 font-display text-xl uppercase leading-tight text-paper">
-                  {a.name}
-                </h3>
-                <p className="relative mt-1 text-xs text-paper/60">{a.tagline}</p>
-              </Reveal>
-            )
-          )}
+                <h3 className="font-display text-xl uppercase leading-tight text-paper">{a.name}</h3>
+                <p className="mt-1 text-xs text-paper/60">{a.tagline}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
 
         <Reveal className="mt-10 flex justify-center">

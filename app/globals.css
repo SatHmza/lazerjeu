@@ -81,6 +81,22 @@ html.preload-lock body {
   }
 }
 
+/* Slow breathing on the hero's static neon wash so it reads as light,
+   not a flat gradient. */
+.hero-glow {
+  animation: hero-glow-pulse 7s ease-in-out infinite;
+}
+
+@keyframes hero-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 .text-outline {
   -webkit-text-stroke: 1px currentColor;
   color: transparent;

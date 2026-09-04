@@ -34,7 +34,7 @@ export const activities: Activity[] = [
     tagline: "Cibles connectées, scores en temps réel",
     description:
       "Des cibles électroniques qui comptent les points à votre place, pour se concentrer sur la précision et le trash-talk entre amis.",
-    cid: "QmNRy7NJFmj8GZfogceznpzzXh5wVHqQgCzHDwAWer5xfY",
+    cid: "QmUUyk2apdmcjeFcRwpBR9u7yaL18XLn1LVG5o8nDXsjz5",
     color: "laser-cyan",
   },
   {
@@ -52,7 +52,7 @@ export const activities: Activity[] = [
     tagline: "Dernières manettes, derniers titres",
     description:
       "Des postes PS4 et PS5 pensés pour le multijoueur : sport, course, combat — de quoi occuper une bande d'amis un après-midi entier.",
-    cid: "QmfW8rEo8waxvs1x8que4mCvrjFC95iwZfUyqqaZpHRYvF",
+    cid: "QmdmfziseKLVZFRw52La9vu8Agvx7SxR4887eg6dDX2Wk3",
     color: "laser-lime",
   },
   {
@@ -70,7 +70,7 @@ export const activities: Activity[] = [
     tagline: "Réflexes, palets et petit talk-trash",
     description:
       "Deux tables prêtes pour les duels rapides. Simple à comprendre, difficile à dominer.",
-    cid: "QmT7Lpm16UTJsSYVLHSGLUahbNhqVNkSLqLGEZtMNy8MK1",
+    cid: "Qmb9mDfEeE8EuV7EhKf8oQjMrBC7ESBGtjhADqkDbNE5oq",
     color: "laser-cyan",
   },
   {
@@ -88,7 +88,7 @@ export const activities: Activity[] = [
     tagline: "Anniversaires, sorties scolaires, team building",
     description:
       "Des formules jusqu'à 200 personnes, activités combinées et espace bistro dédié — on s'occupe du reste.",
-    cid: "QmRBvEuuSqPSEmzqqdAnRZ3BbD8nyPLNfet4E5Nfjircdj",
+    cid: "Qme7T8A6CCP1b9hT646MK9MzR9NKCC85axqYZ8HYUuh925",
     color: "laser-violet",
   },
 ];
@@ -155,19 +155,20 @@ export const faqs = [
 ];
 
 export const galleryImages = [
-  { cid: "QmTeweZ4yEUcWNRnoiwg1xcTumc8QUTCrXQUPgcGHFE5Cw", caption: "Arène laser game" },
-  { cid: "QmaZ3WYY6A5ThDt9fyxpNEQsb14PbpbZxUE5SdJfBFMaWD", caption: "Terrasse front de mer" },
-  { cid: "QmQFY7osobuJBwa3SjEXubD8bBqVCpEgsmqfx6jBs2L5Dv", caption: "Soirée karaoké" },
-  { cid: "QmQx6ZR5yq1SwcokPMNsbphG2br6kWDB5zsowMijSLfXn3", caption: "Anniversaire enfants" },
-  { cid: "QmPG2WjLMz414WHvUA3Wgpoauz9mgZ3KPVbGkN4WtXHcqT", caption: "Sortie scolaire" },
-  { cid: "QmQtafzoSsQNhSXd63hAtAez5ZzmYz6p98p538uqszSRtZ", caption: "Team building entreprise" },
-  { cid: "QmW5NeYukgScHK7JEwLPPWDeoZT9W98VSKEh9iv38z8BYW", caption: "Bistro & brunch" },
-  { cid: "Qmf5QMmtsA9Q4eTr5tXggPzP2mNTtZux4PA2wf6UXtf5Br", caption: "Photobooth 360°" },
-  { cid: "QmP2ha5ykWf2qX6jGFkxerpiMJojcRz7j7BWDfVgNbghdG", caption: "Air hockey" },
-  { cid: "QmQZDsWLaDTxoU77cJyvFSUPmb1qcwQdrdddwfHe15erFZ", caption: "Fléchettes électroniques" },
+  // Homepage teaser shows the first four.
+  { cid: "QmS964ZoPXDy2EeDcX8K5a2EH2SGGzXk2j4aGnp2JguKx8", caption: "La salle, en néon" },
+  { cid: "QmQx6ZR5yq1SwcokPMNsbphG2br6kWDB5zsowMijSLfXn3", caption: "Photobooth 360°" },
+  { cid: "Qmf5QMmtsA9Q4eTr5tXggPzP2mNTtZux4PA2wf6UXtf5Br", caption: "Les soirées" },
+  { cid: "QmR2ntWuUZy9qBSxGhJTpp9nt2Vm7JnEjQnWJ76pdGVf5z", caption: "Ambiance néon" },
+  { cid: "QmWBT8WwSmagTYUCxTAo5QwqV3BrfgxEffMSjJLt1w9yVJ", caption: "Arène laser game" },
+  { cid: "QmUUyk2apdmcjeFcRwpBR9u7yaL18XLn1LVG5o8nDXsjz5", caption: "Coin arcade" },
+  { cid: "QmTJ1Js9S3od1XXu7716iaR16zTXipXZPubvBQ6YcHDPPa", caption: "Soirée karaoké" },
   { cid: "QmdmfziseKLVZFRw52La9vu8Agvx7SxR4887eg6dDX2Wk3", caption: "PlayStation lounge" },
-  { cid: "QmYy1v68yRfAW1UwQYZSg4QQQ5s4v43bVmRCfd7M2LKkrv", caption: "Coucher de soleil sur Harhoura" },
-  { cid: "QmaKRxoqWFSrqGxTaTeDszmjGSbcjbeTmJVdcVdaaxJduU", caption: "Jeux de société en terrasse" },
+  { cid: "QmXNo8rDKq6wPdDrK98xjSDZj4K11riVpMnNkPGdiuKhjM", caption: "Jeux de société" },
+  { cid: "QmNhbgGVgLQDKUYjL13jcP2LYapshMibKAjcEZ9oskkKSF", caption: "Bistro & burgers" },
+  { cid: "Qme7T8A6CCP1b9hT646MK9MzR9NKCC85axqYZ8HYUuh925", caption: "Anniversaires" },
+  { cid: "QmaZ3WYY6A5ThDt9fyxpNEQsb14PbpbZxUE5SdJfBFMaWD", caption: "Terrasse front de mer" },
+  { cid: "Qma7NAshzbU9CBwmvL9BRnHqxGcWT3rrnRGDzfQUHQjRqF", caption: "Néons de nuit" },
 ];
 
 export const contact = {
@@ -190,7 +191,7 @@ export const eventPackages = [
     name: "Anniversaires",
     audience: "Enfants & ados",
     capacity: "Jusqu'à 200 invités",
-    cid: "Qme7T8A6CCP1b9hT646MK9MzR9NKCC85axqYZ8HYUuh925",
+    cid: "QmRBvEuuSqPSEmzqqdAnRZ3BbD8nyPLNfet4E5Nfjircdj",
     description:
       "Laser game, photobooth, gâteau et espace privatisé — une formule clé en main pensée pour ne rien gérer le jour J.",
   },
@@ -206,7 +207,7 @@ export const eventPackages = [
     name: "Team building",
     audience: "Entreprises",
     capacity: "Jusqu'à 200 collaborateurs",
-    cid: "QmaRikvtx3L6TwjsK6bHPrDmVBwJnRyNj4uxfiYVgANis7",
+    cid: "QmQtafzoSsQNhSXd63hAtAez5ZzmYz6p98p538uqszSRtZ",
     description:
       "Challenges laser game par équipes, débrief autour d'un buffet — pour souder une équipe autrement qu'en salle de réunion.",
   },

@@ -6,10 +6,7 @@ import { activities, lummi } from "@/lib/data";
 
 // A curated set of above-the-fold assets we actually preload, so the
 // percentage reflects real network/decode progress rather than a fake timer.
-const CRITICAL_ASSETS = [
-  lummi("QmUtaJj4v3UPX9NPo8x8iALMmb1HTEJoG6XJpmd96CVQau", 1600, 2000),
-  ...activities.slice(0, 6).map((a) => lummi(a.cid, 900, 1100)),
-];
+const CRITICAL_ASSETS = activities.map((a) => lummi(a.cid, 900, 1100));
 
 export default function Preloader() {
   const [visible, setVisible] = useState(true);
