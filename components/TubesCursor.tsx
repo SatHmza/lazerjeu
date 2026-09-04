@@ -2,9 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-// Landing-page-only cursor: colored 3D tubes chase the pointer in WebGL,
-// standing in for the system cursor. Adapted from
-// https://codepen.io/soju22/pen/qEbdVjK (threejs-components "tubes1" cursor).
+// The neon tubes background from https://codepen.io/soju22/pen/qEbdVjK
+// (threejs-components "tubes1" cursor), adapted 1:1 from the pen: there it's
+// the entire page background with the hero text layered on top via normal
+// DOM order — not a transparent overlay. The renderer clears to opaque
+// black, so this must stay scoped to its own section (see Hero in
+// app/page.tsx), never `position: fixed` over the rest of the page, or it
+// blacks out everything below it.
 export default function TubesCursor() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -50,7 +54,7 @@ export default function TubesCursor() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-[80] h-full w-full"
+      className="pointer-events-none absolute inset-0 z-0 h-full w-full"
       aria-hidden
     />
   );

@@ -1,51 +1,29 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import Image from "next/image";
 import SplitReveal from "@/components/SplitReveal";
 import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import RippleImage from "@/components/RippleImage";
+import TubesCursor from "@/components/TubesCursor";
 import { activities, stats, contact, lummi, galleryImages } from "@/lib/data";
 
 export default function HomePage() {
-  const heroRef = useRef<HTMLDivElement | null>(null);
-  const heroImgRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      gsap.to(heroImgRef.current, {
-        yPercent: 18,
-        ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }, heroRef);
-    return () => ctx.revert();
-  }, []);
-
   return (
     <>
-      {/* HERO — pinned, parallax image, split-text headline */}
-      <section ref={heroRef} className="relative flex h-[100svh] items-end overflow-hidden bg-ink">
-        <div ref={heroImgRef} className="absolute inset-0 -top-[10%] h-[120%] w-full">
-          <Image
-            src={lummi("QmUtaJj4v3UPX9NPo8x8iALMmb1HTEJoG6XJpmd96CVQau", 1800, 2200)}
-            alt="Arène laser game Lazar Jeux, Harhoura"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-70"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/10" />
-        </div>
+      {/* HERO — the codepen's own look: full black canvas, neon tubes
+          chasing the cursor, bold type layered on top. No photo here by
+          design — this is the one moment that's pure neon/graphic. */}
+      <section className="relative flex h-[100svh] items-end overflow-hidden bg-black">
+        <TubesCursor />
+        <div
+          className="pointer-events-none absolute inset-0 z-[1]"
+          style={{
+            background:
+              "radial-gradient(60% 50% at 50% 100%, rgba(255,47,208,0.16), transparent 70%)",
+          }}
+        />
 
         <div className="relative z-10 w-full px-6 pb-16 md:px-10 md:pb-24">
           <span className="mb-4 block font-display text-xs uppercase tracking-widest2 text-laser-cyan">
@@ -91,19 +69,48 @@ export default function HomePage() {
           </h2>
         </Reveal>
 
+        {/* Alternates real photos with pure neon/graphic cards — fewer
+            photos, more of the codepen's glow-on-black language. */}
         <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-paper/10 sm:grid-cols-2 lg:grid-cols-4">
-          {activities.map((a, i) => (
-            <Reveal key={a.slug} delay={(i % 4) * 0.06} className="group relative aspect-[3/4] bg-ink">
-              <RippleImage src={lummi(a.cid, 700, 900)} alt={a.name} className="absolute inset-0 h-full w-full" />
-              <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink via-ink/10 to-transparent p-5">
-                <span className="font-display text-xs uppercase tracking-widest2 text-laser-cyan">
+          {activities.map((a, i) =>
+            i % 2 === 0 ? (
+              <Reveal key={a.slug} delay={(i % 4) * 0.06} className="group relative aspect-[3/4] bg-ink">
+                <RippleImage src={lummi(a.cid, 700, 900)} alt={a.name} className="absolute inset-0 h-full w-full" />
+                <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink via-ink/10 to-transparent p-5">
+                  <span className="font-display text-xs uppercase tracking-widest2 text-laser-cyan">
+                    0{i + 1}
+                  </span>
+                  <h3 className="font-display text-xl uppercase leading-tight text-paper">{a.name}</h3>
+                  <p className="mt-1 text-xs text-paper/60">{a.tagline}</p>
+                </div>
+              </Reveal>
+            ) : (
+              <Reveal
+                key={a.slug}
+                delay={(i % 4) * 0.06}
+                className="relative flex aspect-[3/4] flex-col justify-end overflow-hidden bg-black p-5"
+              >
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(120% 90% at 15% 100%, rgba(57,242,230,0.18), transparent 60%)",
+                  }}
+                />
+                <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen" aria-hidden>
+                  <div className="absolute left-1/2 top-1/2 h-[140%] w-px -translate-x-1/2 -translate-y-1/2 rotate-[18deg] bg-gradient-to-b from-transparent via-laser-cyan to-transparent" />
+                  <div className="absolute left-1/2 top-1/2 h-[140%] w-px -translate-x-1/2 -translate-y-1/2 -rotate-[12deg] bg-gradient-to-b from-transparent via-laser-pink to-transparent" />
+                </div>
+                <span className="relative font-display text-5xl text-transparent text-outline">
                   0{i + 1}
                 </span>
-                <h3 className="font-display text-xl uppercase leading-tight text-paper">{a.name}</h3>
-                <p className="mt-1 text-xs text-paper/60">{a.tagline}</p>
-              </div>
-            </Reveal>
-          ))}
+                <h3 className="relative mt-2 font-display text-xl uppercase leading-tight text-paper">
+                  {a.name}
+                </h3>
+                <p className="relative mt-1 text-xs text-paper/60">{a.tagline}</p>
+              </Reveal>
+            )
+          )}
         </div>
 
         <Reveal className="mt-10 flex justify-center">
@@ -148,14 +155,10 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {galleryImages.slice(0, 8).map((g, i) => (
-            <Reveal
-              key={g.cid}
-              delay={(i % 4) * 0.05}
-              className={`relative overflow-hidden rounded-xl ${i % 5 === 0 ? "aspect-[3/4] md:col-span-2 md:row-span-2" : "aspect-square"}`}
-            >
+          {galleryImages.slice(0, 4).map((g, i) => (
+            <Reveal key={g.cid} delay={i * 0.05} className="relative aspect-square overflow-hidden rounded-xl">
               <Image
-                src={lummi(g.cid, 800, 800)}
+                src={lummi(g.cid, 600, 600)}
                 alt={g.caption}
                 fill
                 sizes="(min-width: 768px) 25vw, 50vw"
