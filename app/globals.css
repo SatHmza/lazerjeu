@@ -110,3 +110,52 @@ html.preload-lock body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---- Liquid glass (nav pills) -------------------------------------------
+   Base layer works everywhere: blur + saturation + translucent fill + a
+   specular top edge. Chrome additionally gets the SVG refraction pass via
+   the @supports block, which other engines simply skip.                    */
+.glass {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.05) 45%,
+    rgba(255, 255, 255, 0.09) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 10px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  backdrop-filter: blur(16px) saturate(170%);
+}
+
+@supports (backdrop-filter: url(#liquid-glass)) {
+  .glass {
+    -webkit-backdrop-filter: url(#liquid-glass) blur(12px) saturate(180%);
+    backdrop-filter: url(#liquid-glass) blur(12px) saturate(180%);
+  }
+}
+
+/* Sheen across the glass, so it reads as a lit surface. Sits under the
+   label (z-index -1 inside the panel's own stacking context) so text
+   contrast is never reduced. */
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.16) 42%,
+    rgba(255, 255, 255, 0.03) 55%,
+    transparent 75%
+  );
+  opacity: 0.8;
+}
