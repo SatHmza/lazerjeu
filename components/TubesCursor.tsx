@@ -16,8 +16,10 @@ export default function TubesCursor() {
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
     if (isTouch || !canvasRef.current) return;
 
+    const canvas = canvasRef.current;
     let app: any;
     let destroyed = false;
+    let onPointerMove: ((e: PointerEvent) => void) | null = null;
 
     import("threejs-components/build/cursors/tubes1.min.js").then((mod) => {
       if (destroyed || !canvasRef.current) return;
@@ -31,6 +33,28 @@ export default function TubesCursor() {
           },
         },
       });
+
+      // The library's own render loop falls back to a wide "sleep" orbit
+      // (sleepRadius 300x150) the moment the pointer leaves the canvas or the
+      // window — it picks up mid-orbit, which reads as the tubes snapping to
+      // the centre or the far side. We drive the target ourselves instead, so
+      // leaving the tab simply leaves the tubes where they were.
+      const { three, tubes } = app;
+      if (three && tubes) {
+        three.onBeforeRender = (state: any) => tubes.update(state);
+
+        onPointerMove = (e: PointerEvent) => {
+          const rect = canvas.getBoundingClientRect();
+          if (!rect.width || !rect.height) return;
+          const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          const ny = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+          const { wWidth = 0, wHeight = 0 } = three.size ?? {};
+          tubes.target.x = (nx * wWidth) / 2;
+          tubes.target.y = (ny * wHeight) / 2;
+          tubes.target.z = 0;
+        };
+        window.addEventListener("pointermove", onPointerMove, { passive: true });
+      }
     });
 
     const onClick = () => {
@@ -47,6 +71,7 @@ export default function TubesCursor() {
     return () => {
       destroyed = true;
       window.removeEventListener("click", onClick);
+      if (onPointerMove) window.removeEventListener("pointermove", onPointerMove);
       app?.dispose?.();
     };
   }, []);

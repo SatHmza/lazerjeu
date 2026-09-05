@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "@/lib/gsap";
+import { useEffect, useState } from "react";
 import { contact } from "@/lib/data";
 
 const LINKS = [
@@ -20,18 +19,16 @@ const LINKS = [
 export default function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const overlayRef = useRef<HTMLDivElement | null>(null);
 
+  // Close on navigation.
   useEffect(() => setOpen(false), [pathname]);
 
+  // Lock background scroll while the panel is open.
   useEffect(() => {
-    if (!overlayRef.current) return;
-    gsap.to(overlayRef.current, {
-      yPercent: open ? 0 : -100,
-      duration: 0.6,
-      ease: "power4.inOut",
-    });
     document.documentElement.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
   }, [open]);
 
   return (
@@ -62,6 +59,7 @@ export default function Nav() {
         <div className="flex items-center justify-between gap-4 px-4 py-4 md:px-8 md:py-6">
           <Link
             href="/"
+            onClick={() => setOpen(false)}
             className="glass rounded-full px-5 py-3 font-display text-sm font-semibold uppercase tracking-widest2 text-paper transition-transform duration-300 hover:scale-[1.03]"
           >
             Lazar Jeux
@@ -97,8 +95,10 @@ export default function Nav() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="glass flex h-12 w-12 shrink-0 flex-col items-center justify-center gap-1.5 rounded-full lg:hidden"
-            aria-label="Menu"
+            className="glass relative z-[2] flex h-12 w-12 shrink-0 flex-col items-center justify-center gap-1.5 rounded-full lg:hidden"
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
           >
             <span
               className={`h-px w-5 bg-paper transition-transform duration-300 ${open ? "translate-y-[7px] rotate-45" : ""}`}
@@ -111,20 +111,48 @@ export default function Nav() {
         </div>
       </header>
 
+      {/* Mobile panel. Driven by a CSS transition rather than GSAP: GSAP was
+          baking Tailwind's -translate-y-full into its own `y` and then
+          animating `yPercent` on top of it, so the panel stayed off-screen
+          and the burger appeared to do nothing. */}
       <div
-        ref={overlayRef}
-        className="fixed inset-0 z-[84] flex -translate-y-full flex-col justify-center gap-4 bg-ink px-8 lg:hidden"
+        id="mobile-menu"
+        aria-hidden={!open}
+        className={`fixed inset-0 z-[84] flex flex-col overflow-y-auto bg-ink px-8 pb-12 pt-28 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] lg:hidden ${
+          open ? "translate-y-0" : "-translate-y-full"
+        }`}
       >
-        {LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="font-display text-4xl uppercase tracking-wide text-paper"
-          >
-            {link.label}
-          </Link>
-        ))}
-        <a href={contact.whatsapp} className="mt-8 font-display text-sm uppercase tracking-widest2 text-laser-pink">
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(70% 45% at 15% 95%, rgba(255,47,208,0.22), transparent 65%), radial-gradient(60% 40% at 90% 10%, rgba(57,242,230,0.16), transparent 65%)",
+          }}
+        />
+
+        <nav className="relative mt-auto flex flex-col gap-1">
+          {LINKS.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={`border-b border-paper/10 py-3 font-display text-3xl uppercase leading-none tracking-tight transition-colors ${
+                  active ? "text-laser-pink" : "text-paper"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <a
+          href={contact.whatsapp}
+          onClick={() => setOpen(false)}
+          className="relative mb-auto mt-8 w-fit rounded-full bg-laser-pink px-7 py-4 font-display text-xs uppercase tracking-widest2 text-ink"
+        >
           Réserver sur WhatsApp →
         </a>
       </div>
