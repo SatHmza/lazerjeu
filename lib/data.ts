@@ -25,7 +25,7 @@ export const activities: Activity[] = [
     tagline: "Arène multi-niveaux, plongée dans le noir",
     description:
       "Notre arène immersive à plusieurs niveaux transforme chaque partie en mission commando. Gilets, brume, néons — l'équipe qui communique le mieux gagne.",
-    cid: "QmWBT8WwSmagTYUCxTAo5QwqV3BrfgxEffMSjJLt1w9yVJ",
+    cid: "QmSrxnHfSVTN3DLSpmXtgGYVqT3dsrYpUmWWAX7BXGK5Cw",
     color: "laser-pink",
   },
   {
@@ -34,7 +34,7 @@ export const activities: Activity[] = [
     tagline: "Cibles connectées, scores en temps réel",
     description:
       "Des cibles électroniques qui comptent les points à votre place, pour se concentrer sur la précision et le trash-talk entre amis.",
-    cid: "QmUUyk2apdmcjeFcRwpBR9u7yaL18XLn1LVG5o8nDXsjz5",
+    cid: "QmQ4RukTwUVoCNWhowQhkXA1vuk4EP3vvrT4Co9fX8Qwwj",
     color: "laser-cyan",
   },
   {
@@ -52,7 +52,7 @@ export const activities: Activity[] = [
     tagline: "Dernières manettes, derniers titres",
     description:
       "Des postes PS4 et PS5 pensés pour le multijoueur : sport, course, combat — de quoi occuper une bande d'amis un après-midi entier.",
-    cid: "QmdmfziseKLVZFRw52La9vu8Agvx7SxR4887eg6dDX2Wk3",
+    cid: "QmZ5jp2sGDJXfzCaJgPL1T5TPa2KBTSqa4SUrawDJQY2ZC",
     color: "laser-lime",
   },
   {
@@ -70,7 +70,7 @@ export const activities: Activity[] = [
     tagline: "Réflexes, palets et petit talk-trash",
     description:
       "Deux tables prêtes pour les duels rapides. Simple à comprendre, difficile à dominer.",
-    cid: "Qmb9mDfEeE8EuV7EhKf8oQjMrBC7ESBGtjhADqkDbNE5oq",
+    cid: "QmS964ZoPXDy2EeDcX8K5a2EH2SGGzXk2j4aGnp2JguKx8",
     color: "laser-cyan",
   },
   {
@@ -156,17 +156,17 @@ export const faqs = [
 
 export const galleryImages = [
   // Homepage teaser shows the first four.
-  { cid: "QmS964ZoPXDy2EeDcX8K5a2EH2SGGzXk2j4aGnp2JguKx8", caption: "La salle, en néon" },
+  { cid: "QmWBT8WwSmagTYUCxTAo5QwqV3BrfgxEffMSjJLt1w9yVJ", caption: "Le couloir néon" },
   { cid: "QmQx6ZR5yq1SwcokPMNsbphG2br6kWDB5zsowMijSLfXn3", caption: "Photobooth 360°" },
   { cid: "Qmf5QMmtsA9Q4eTr5tXggPzP2mNTtZux4PA2wf6UXtf5Br", caption: "Les soirées" },
-  { cid: "QmR2ntWuUZy9qBSxGhJTpp9nt2Vm7JnEjQnWJ76pdGVf5z", caption: "Ambiance néon" },
-  { cid: "QmWBT8WwSmagTYUCxTAo5QwqV3BrfgxEffMSjJLt1w9yVJ", caption: "Arène laser game" },
+  { cid: "QmR2ntWuUZy9qBSxGhJTpp9nt2Vm7JnEjQnWJ76pdGVf5z", caption: "Ambiance laser" },
+  { cid: "QmSrxnHfSVTN3DLSpmXtgGYVqT3dsrYpUmWWAX7BXGK5Cw", caption: "Arène laser game" },
   { cid: "QmUUyk2apdmcjeFcRwpBR9u7yaL18XLn1LVG5o8nDXsjz5", caption: "Coin arcade" },
-  { cid: "QmTJ1Js9S3od1XXu7716iaR16zTXipXZPubvBQ6YcHDPPa", caption: "Soirée karaoké" },
-  { cid: "QmdmfziseKLVZFRw52La9vu8Agvx7SxR4887eg6dDX2Wk3", caption: "PlayStation lounge" },
+  { cid: "QmW9Yc2z9tiVibRA99nkdaRmpK8wtZRE7r5HSZAc3HHNnG", caption: "Soirée karaoké" },
+  { cid: "QmWets3kn51ujaMeG6RdCi2dEUgqcMiyuV1BkfWuamUpRK", caption: "PlayStation lounge" },
   { cid: "QmXNo8rDKq6wPdDrK98xjSDZj4K11riVpMnNkPGdiuKhjM", caption: "Jeux de société" },
   { cid: "QmNhbgGVgLQDKUYjL13jcP2LYapshMibKAjcEZ9oskkKSF", caption: "Bistro & burgers" },
-  { cid: "Qme7T8A6CCP1b9hT646MK9MzR9NKCC85axqYZ8HYUuh925", caption: "Anniversaires" },
+  { cid: "QmRBvEuuSqPSEmzqqdAnRZ3BbD8nyPLNfet4E5Nfjircdj", caption: "Anniversaires" },
   { cid: "QmaZ3WYY6A5ThDt9fyxpNEQsb14PbpbZxUE5SdJfBFMaWD", caption: "Terrasse front de mer" },
   { cid: "Qma7NAshzbU9CBwmvL9BRnHqxGcWT3rrnRGDzfQUHQjRqF", caption: "Néons de nuit" },
 ];
